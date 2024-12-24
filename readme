@@ -1,0 +1,112 @@
+## Description
+This is a simple Flask-based API that fetches news articles from the GNews API. It allows users to query for news articles by keywords and limit the number of results returned.
+
+The API includes the following features:
+- Fetches news articles using the GNews API.
+- Supports query parameters for customization.
+- Includes error handling for failed requests.
+
+## Requirements
+- Python 3.7 or higher
+- GNews API key (replace in the code with your API key)
+
+## Installation and Setup
+1. Clone the Repository
+   Clone this repository to your local machine:
+   ```bash
+   git clone git@github.com:erivapri/news-api.git
+   cd news-api
+   ```
+
+2. Set Up a Virtual Environment
+   Create and activate a Python virtual environment:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # For Windows: venv\Scripts\activate
+   ```
+
+3. Install Dependencies
+   Install the required Python packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Set Up the GNews API Key
+   Open the `app.py` file and replace the placeholder `API_KEY` with your GNews API key:
+   ```python
+   API_KEY = 'your_gnews_api_key_here'
+   ```
+
+5. Run the Application
+   Start the Flask development server:
+   ```bash
+   python3 app.py
+   ```
+
+   The application will run at:
+   ```
+   http://127.0.0.1:5000
+   ```
+
+## API Usage
+
+### Endpoint: `/news`
+This endpoint retrieves news articles from GNews based on the provided query parameters.
+
+### Query Parameters
+- `query` (optional): The search keyword for news articles. Defaults to `news`.
+- `max_results` (optional): The maximum number of articles to return. Defaults to `10`.
+
+### Example Request
+To fetch 5 articles about technology:
+```
+http://127.0.0.1:5000/news?query=technology&max_results=5
+```
+
+### Example Response
+```json
+{
+  "totalArticles": 1234,
+  "articles": [
+    {
+      "title": "Example Article",
+      "description": "This is an example article description.",
+      "content": "This is the full content of the article.",
+      "url": "https://example.com/article",
+      "image": "https://example.com/article-image.jpg",
+      "publishedAt": "2024-12-23T10:00:00Z",
+      "source": {
+        "name": "Example Source",
+        "url": "https://example.com"
+      }
+    }
+  ]
+}
+```
+
+### Error Handling
+If there is an issue with fetching news from the GNews API, the response will include an error message:
+```json
+{
+  "error": "Error fetching news"
+}
+```
+
+## Project Structure
+```
+news-api/
+├── app.py              # Main application file
+├── requirements.txt    # Python dependencies
+├── .gitignore          # Ignored files for Git
+└── README.md           # Project documentation
+```
+
+## Development Notes
+- Framework: Flask
+- Public API: [GNews API](https://gnews.io/docs/)
+
+## Future Improvements
+- Add more query parameters for advanced searches (e.g., filter by language, country).
+- Implement caching to reduce API calls.
+- Deploy the API on a cloud platform like Heroku or AWS.
+
